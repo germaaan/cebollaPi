@@ -1,7 +1,7 @@
 # CebollaPi
 Charla sobre Tor y cómo crear punto de acceso seguro con Raspberry Pi para el taller de anonimato de Interferencias.
 
-Enlace a la presentación: https://germaaan.github.io/cebollaPi/#/
+Enlace a la presentación: https://germaaan.github.io/cebollaPi/
 
 <p align="center">
 <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">
