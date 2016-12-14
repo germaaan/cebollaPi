@@ -37,26 +37,29 @@
         <div class="slides">
             <section>
                 <h3>Taller de anonimato</h3	>
-                <p>
-                    <font size="10">
-                        CebollaPi: cómo hacer punto de acceso seguro con una RaspberryPi y Tor
-                    </font>
-                </p>
-                <p style="line-height: 43%">
-                    <font size="5">
-                        <a style="font-size: 30px;" href="https://interferencias.github.io/">https://interferencias.github.io/</a>
-                        <br/><br/> (<strong>Twitter</strong>: <a href="https://twitter.com/Inter_ferencias">@Inter_ferencias</a> /
-                        <strong>GitHub</strong>: <a href="https://github.com/Interferencias"> @Interferencias</a> /
+<p>
+<font size="10">
+    CebollaPi: cómo hacer punto de acceso seguro con una RaspberryPi y Tor
+</font>
+</p>
+<p style="line-height: 43%">
+<font size="5">
+    <a style="font-size: 30px;" href="https://interferencias.github.io/">https://interferencias.github.io/</a>
+    <br/><br/> (<strong>Twitter</strong>: <a href="https://twitter.com/Inter_ferencias">@Inter_ferencias</a> /
+    <strong>GitHub</strong>: <a href="https://github.com/Interferencias"> @Interferencias</a> /
 												<strong>Eventos</strong>: <a href="https://www.meetup.com/es-ES/Granada-Geek/"> GranadaGeek</a>)
-                        <br>
-                        <img alt="image" src="images/logo.png" height="300" />
-                        <br/>
-                        <a> <a href="http://osl.ugr.es/"> <img alt="image" src="images/osl.png" height="80" /><a/>&nbsp;&nbsp;&nbsp;<a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode"><img alt="image" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" height="50" /> </a></a>
-                    </font>
-                </p>
+    <br>
+    <img alt="image" src="images/logo.png" height="300" />
+    <br/>
+    <a> <a href="http://osl.ugr.es/"> <img alt="image" src="images/osl.png" height="80" /><a/>&nbsp;&nbsp;&nbsp;<a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode"><img alt="image" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" height="50" /> </a></a>
+</font>
+</p>
             </section>
             <section>
               <h3>¿Qué es Tor?</h3>
+              <p class="fragment">Tor es una red que nos permite acceder a Internet de forma anónima y también el software que nos permite utilizar dicha red.</p>
+              <p class="fragment">Oculta el origen y el destino del tráfico de Internet, así nadie sabe fácilmente quién eres y qué estás viendo.</p>
+              <p class="fragment">Uso práctico: saltarse la censura de algunos páises.</p>
             </section>
             <section>
                 <h3>¿Qué es RaspberryPi?</h3>
@@ -89,54 +92,227 @@
                     <h3>Instalar Raspbian</h3>
                     <h5>Modo salvaje: usando dd</h5>
                     <pre>
-                      <code data-trim contenteditable>
+  <code>
 dd bs=4M if=raspbian.img of=/dev/[sdX|mmcblkX]
-                  </code>
-                  <pre>
-                </section>
-                <section>
-                  <h3>Instalar Raspbian</h3>
-                  <h5>Modo SinQuebraderosDeCabeza: usando NOOBS (New Out Of the Box Software)</h5>
-                  <ul>
-                    <li>Formateamos la tarjeta SD en FAT32</li>
-                    <li>Descargamos NOOBS: https://downloads.raspberrypi.org/NOOBS_latest</li>
-                    <li>Descomprimimos el archivo</li>
-                    <li>Copiamos los archivos a la tarjeta SD</li>
-                    <li>Encendemos la Raspberry Pi e instalamos mediante el instalador</li>
-                  </ul>
-                  <p class="fragment">Todos sabemos que mola más instalarlo a mano, pero falla más que una escopeta de feria.</p>
-                </section>
-                <section>
-                <h3>¿Qué tenemos que configurar?</h3>
-                <ul>
-                  <li>Acceso SSH a la Raspberry Pi</li>
-                  <li>Interfaces de red</li>
-                  <li>Servidor DHCP</li>
-                  <li>Punto de acceso</li>
-                  <li>iptables</li>
-                  <li>Tor</li>
-                </ul>
+  </code>
+  <pre>
+</section>
+<section>
+  <h3>Instalar Raspbian</h3>
+  <h5>Modo SinQuebraderosDeCabeza: usando NOOBS (New Out Of the Box Software)</h5>
+  <ul>
+<li>Formateamos la tarjeta SD en FAT32</li>
+<li>Descargamos NOOBS: <a href="https://downloads.raspberrypi.org/NOOBS_latest">https://downloads.raspberrypi.org/NOOBS_latest</a></li>
+<li>Descomprimimos el archivo</li>
+<li>Copiamos los archivos a la tarjeta SD</li>
+<li>Encendemos la Raspberry Pi e instalamos mediante el instalador</li>
+  </ul>
+  <p class="fragment">Todos sabemos que mola más instalarlo a mano, pero falla más que una escopeta de feria.</p>
+</section>
+<section>
+<h3>¿Qué tenemos que configurar?</h3>
+<ul>
+  <li>Acceso SSH a la Raspberry Pi</li>
+  <li>Servidor DHCP</li>
+  <li>Interfaces de red</li>
+  <li>Punto de acceso</li>
+  <li>iptables</li>
+  <li>Tor</li>
+</ul>
               </section>
               <section>
-                <h3>Acceso SSH a la Raspberry Pi</h3>
-                <pre>
-                  <code data-trim contenteditable>
+<h3>Acceso SSH a la Raspberry Pi</h3>
+<pre>
+  <code>
 sudo raspi-config
               </code>
               <p>"Advanced options" ➡️ "SSH" ➡️ "Enable or disable ssh server" ➡️ YES </p>
             </pre>
                 </section>
                 <section>
-                  <h3>Actualizar sistema e instalar paquetes necesarios</h3>
-                  <pre>
-                    <code data-trim contenteditable>
+                    <h3>Actualizar sistema e instalar paquetes necesarios</h3>
+                    <pre>
+<code>
 sudo apt update && sudo sudo apt full-upgrade -y
 
 sudo apt install hostapd isc-dhcp-server tor
-                </code>
+</code>
               </pre>
-            </section>
-            </section>
+                </section>
+                <section>
+                    <h3>Servidor DHCP</h3>
+                    <p>Configuramos el servidor DHCP para que asigne IP a las máquinas que se conectan a la Raspberry Pi.</p>
+                    <pre>
+/etc/dhcp/dhcpd.conf
+<code>
+# Cambiar el nombre del servidor y la dirección de los DNSs
+option domain-name "local";
+option domain-name-servers 8.8.8.8, 8.8.4.4;
+
+# Descomentar esta opción para indicar que va a ser el único
+# servidor DHCP
+authoritative;
+
+# Añadir configuración para la red
+subnet 192.168.1.0 netmask 255.255.255.0 {
+  range 192.168.1.160 192.168.1.170;
+  option subnet-mask 255.255.255.0;
+  option broadcast-address 192.168.1.255;
+  option routers 192.168.1.150;
+}
+</code>
+</pre>
+                </section>
+                <section>
+                    <h3>Interfaces de red</h3>
+                    <p>La interfaz a través de la que nos vamos a conectar en la Raspberry Pi tiene que tener una dirección IP estática para hacer de servidor DHCP.</p>
+                    <pre>
+/etc/network/interfaces
+<code>
+allow-hotplug wlan0
+
+#iface wlan0 inet manual
+#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+
+iface wlan0 inet static
+  address 192.168.1.150
+  netmask 255.255.255.0
+</code>
+</pre>
+                </section>
+                <section>
+                    <h3>Interfaces de red</h3>
+                    <p>La interfaz a través de la que nos vamos a conectar en la Raspberry Pi es la conexión WiFi.</p>
+                    <pre>
+/etc/default/isc-dhcp-server
+            <code>
+INTERFACES="wlan0"
+</code>
+</pre>
+                </section>
+                <section>
+                    <h3>Punto de acceso</h3>
+                    <p>Nuestra Raspberry Pi será visible como una conexión de red inalámbrica.</p>
+                    <pre>
+/etc/hostapd/hostapd.conf
+  <code>
+# Interfaz a través de la que nos vamos a conectar
+interface=wlan0
+
+# Driver de la tarjeta de red
+driver=[nl80211|rtl871xdrv|...]
+
+# Nombre de la subred
+ssid=HACKERMAN
+
+# Usar la banda de frecuencia a usar (2.4GHz)
+hw_mode=g
+
+# Canal a usar
+channel=6
+
+# Acepta todas las direcciones MAC
+macaddr_acl=0
+
+# Usar autenficación WPA
+auth_algs=1
+
+# Solo se pueden conectar los que conozcan el nombre de la red
+ignore_broadcast_ssid=0
+
+# Usa WPA2
+wpa=2
+
+# Usa una clave precompartida
+wpa_key_mgmt=WPA-PSK
+
+# Contraseña de la red
+wpa_passphrase=clavesupersegura
+
+# Usar cifrado AES
+rsn_pairwise=CCMP
+</code>
+</pre>
+                </section>
+                <section>
+                    <h3>iptables</h3>
+                    <p>Activar reenvío de paquetes IP</p>
+                    <pre>
+/etc/sysctl.conf
+  <code>
+net.ipv4.ip_forward=1
+</code>
+sudo sysctl -p
+</pre>
+                </section>
+                <section>
+                    <h3>iptables</h3>
+                    <p>Configurar tablas de reglas</p>
+                    <pre>
+              <code>
+sudo iptables -F
+sudo iptables -t nat -F
+sudo iptables -t nat -A PREROUTING -i wlan0 -p tcp --dport 22 -j REDIRECT --to-ports 22
+sudo iptables -t nat -A PREROUTING -i wlan0 -p udp --dport 53 -j REDIRECT --to-ports 53
+sudo iptables -t nat -A PREROUTING -i wlan0 -p tcp --syn -j REDIRECT --to-ports 9040
+sudo sh -c 'iptables-save > /etc/iptables.ipv4.nat'
+</code>
+</pre>
+                </section>
+                <section>
+                    <h3>iptables</h3>
+                    <p>Usar nuevas reglas</p>
+                    <pre>
+/etc/network/interfaces
+              <code>
+up iptables-restore /etc/iptables.ipv4.nat
+</code>
+</pre>
+                </section>
+                <section>
+                    <h3>Tor</h3>
+                    <p>Configurar el enrutamiento a través de la red Tor</p>
+                    <pre>
+/etc/tor/torrc
+              <code>
+Log notice file /var/log/tor/notices.log
+VirtualAddrNetwork 10.192.0.0/10
+AutomapHostsSuffixes .onion,.exit
+AutomapHostsOnResolve 1
+TransPort 9040
+TransListenAddress 192.168.1.150
+DNSPort 53
+DNSListenAddress 192.168.1.150
+</code>
+</pre>
+                </section>
+                <section>
+                    <h3>Tor</h3>
+                    <p>Crear archivos de registro</p>
+                    <pre>
+<code>
+sudo touch /var/log/tor/notices.log
+sudo chown debian-tor /var/log/tor/notices.log
+sudo chmod 644 /var/log/tor/notices.log
+</code>
+</pre>
+                </section>
+                <section>
+                    <h3>Iniciar todos los servicios</h3>
+                    <pre>
+                    <code>
+# Para esta sesión
+sudo service isc-dhcp-server start
+sudo service hostapd start
+sudo service tor start
+
+# Automáticamente con cada inicio del sistema
+sudo update-rc.d isc-dhcp-server enable
+sudo update-rc.d hostapd enable
+sudo update-rc.d tor enable
+                    </code>
+                  </pre>
+                </section>
         </div>
     </div>
 
