@@ -55,6 +55,88 @@
                     </font>
                 </p>
             </section>
+            <section>
+              <h3>¿Qué es Tor?</h3>
+            </section>
+            <section>
+                <h3>¿Qué es RaspberryPi?</h3>
+            </section>
+            <section>
+                <h3>¿Qué necesito para montar el punto de acceso seguro?</h3>
+            </section>
+            <section>
+                <section>
+                    <h3>¿Por dónde empiezo?</h3>
+                    <p class=fragment>Por instalar un sistema operativo en la Raspberry Pi</p>
+                </section>
+                <section>
+                    <h3>Sistemas operativos disponibles:</h3>
+                    <ul>
+                        <li>Raspbian</li>
+                        <li>Ubuntu MATE</li>
+                        <li>Snappy Ubuntu</li>
+                        <li>Pidora</li>
+                        <li>SARPi</li>
+                        <li>Arch Linux ARM</li>
+                        <li>Gentoo Linux</li>
+                        <li>FreeBSD</li>
+                        <li>Kali Linux</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>Instalar Raspbian</h3>
+                    <h5>Modo salvaje: usando dd</h5>
+                    <pre>
+                      <code data-trim contenteditable>
+dd bs=4M if=raspbian.img of=/dev/[sdX|mmcblkX]
+                  </code>
+                  <pre>
+                </section>
+                <section>
+                  <h3>Instalar Raspbian</h3>
+                  <h5>Modo SinQuebraderosDeCabeza: usando NOOBS (New Out Of the Box Software)</h5>
+                  <ul>
+                    <li>Formateamos la tarjeta SD en FAT32</li>
+                    <li>Descargamos NOOBS: https://downloads.raspberrypi.org/NOOBS_latest</li>
+                    <li>Descomprimimos el archivo</li>
+                    <li>Copiamos los archivos a la tarjeta SD</li>
+                    <li>Encendemos la Raspberry Pi e instalamos mediante el instalador</li>
+                  </ul>
+                  <p class="fragment">Todos sabemos que mola más instalarlo a mano, pero falla más que una escopeta de feria.</p>
+                </section>
+                <section>
+                <h3>¿Qué tenemos que configurar?</h3>
+                <ul>
+                  <li>Acceso SSH a la Raspberry Pi</li>
+                  <li>Interfaces de red</li>
+                  <li>Servidor DHCP</li>
+                  <li>Punto de acceso</li>
+                  <li>iptables</li>
+                  <li>Tor</li>
+                </ul>
+              </section>
+              <section>
+                <h3>Acceso SSH a la Raspberry Pi</h3>
+                <pre>
+                  <code data-trim contenteditable>
+sudo raspi-config
+              </code>
+              <p>"Advanced options" ➡️ "SSH" ➡️ "Enable or disable ssh server" ➡️ YES </p>
+            </pre>
+                </section>
+                <section>
+                  <h3>Actualizar sistema e instalar paquetes necesarios</h3>
+                  <pre>
+                    <code data-trim contenteditable>
+sudo apt update && sudo sudo apt full-upgrade -y
+
+sudo apt install hostapd isc-dhcp-server tor
+                </code>
+              </pre>
+            </section>
+            </section>
         </div>
     </div>
 
