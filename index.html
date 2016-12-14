@@ -57,15 +57,23 @@
             </section>
             <section>
               <h3>¿Qué es Tor?</h3>
-              <p class="fragment">Tor es una red que nos permite acceder a Internet de forma anónima y también el software que nos permite utilizar dicha red.</p>
-              <p class="fragment">Oculta el origen y el destino del tráfico de Internet, así nadie sabe fácilmente quién eres y qué estás viendo.</p>
-              <p class="fragment">Uso práctico: saltarse la censura de algunos páises.</p>
+                <p class="fragment">Tor es una red que nos permite acceder a Internet de forma anónima y también el software que nos permite utilizar dicha red.</p>
+                <p class="fragment">Oculta el origen y el destino del tráfico de Internet, así nadie sabe fácilmente quién eres y qué estás viendo.</p>
+                <p class="fragment">Uso práctico: saltarse la censura de algunos páises.</p>
             </section>
             <section>
                 <h3>¿Qué es RaspberryPi?</h3>
+                <p class="fragment"> Un microordenador de bajo coste que se creó inicialmente con el objetivo de potenciar la enseñanza de informática en las escuelas.</p>
+                <p class="fragment"> Dado a la potencia que tiene dado su reducido tamaño y gracias a la creatividad de las personas se ha expandido enormemente en su uso.</p>
+                <p class="fragment"> Usos prácticos: nube privada, servidor de web personal, centro multimedia, control domótico de una casa, sistema de videovigilancia...</p>
             </section>
             <section>
                 <h3>¿Qué necesito para montar el punto de acceso seguro?</h3>
+                <ul>
+                    <li>Nuestro router</li>
+                    <li>Nuestro ordenador</li>
+                    <li>Una Raspberry Pi</li>
+                    <li>Un adaptador de red WiFi USB *</li>
             </section>
             <section>
                 <section>
@@ -313,6 +321,44 @@ sudo update-rc.d tor enable
                     </code>
                   </pre>
                 </section>
+            </section>
+            <section>
+                <section>
+                    <h3> ¿Eso es todo? </h3>
+                    <p> Todavía podemos enredar un poco más: "conectarnos a través de un smartphone en vez de a través de un router."</p>
+                    <pre>
+  /etc/wpa_supplicant/wpa_supplicant.conf
+  <code>
+network={
+  ssid="NombreDeLaRed"
+  psk=password
+}
+</code>
+</pre>
+                </section>
+                <section>
+                    <h3> ¿Eso es todo? </h3>
+                    <p class="fragment">Sí y no.</p>
+                    <p class="fragment">Hay scripts y extensiones del navegador que envían información sobre nosotros que no controlamos.</p>
+                </section>
+                <section>
+                    <h3> ¿Eso es todo ya? </h3>
+                    <p>Podemos usar la extensión <strong>NoScript</strong> que bloquea los plugin multimedia que producen todos estos problemas.</p>
+                </section>
+                <section>
+                    <h3> ¿Eso es todo ya? </h3>
+                    <p>También tenemos <strong>Privovy</strong>, una aplicación que nos permite un filtrado avanzado del tráfico: </p>
+                    <ul>
+                        <li>Alterando las cabeceras de los paquetes HTTPS</li>
+                        <li>Modificando nuestra identidad como cliente</li>
+                        <li>Evitando publicidad que nuestro navegador no sea capaz de detectar</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <h3>Ahora sí... eso es todo</h3>
+                <img class="fragment" alt="image" src="images/hackerman.png" height="600" />
+            </section>
         </div>
     </div>
 
